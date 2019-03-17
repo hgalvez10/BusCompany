@@ -1,0 +1,14 @@
+{% extends "base/base.html" %}
+{% block content %}
+    <div class="container" >
+        <form method="post">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Eliminar chofer</legend>
+                <h1>¿Desea eliminar el chofer {{ driver.name }}?</h1>
+                <button type="submit" class="btn btn-danger btn-sm">Sí, eliminar</button>
+                <a class="btn btn-default btn-sm" href="{% url 'company:indexDriver' %}">Cancelar</a>
+            </fieldset>
+        </form>
+    </div>
+{% endblock  %}

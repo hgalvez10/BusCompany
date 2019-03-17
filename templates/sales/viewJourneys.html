@@ -1,0 +1,75 @@
+{% extends "base/base.html" %}
+{% block content %}
+    <div class="container" >
+        <h3> Trayectos Disponibles </h3>
+        <table id="table" class="table" >
+            <thead>
+                <th>Origen</th>
+                <th>Destino</th>
+                <th>Horario</th>
+                <th>Fecha</th>
+                <th>Bus Asignado</th>
+                <th>Promedio Pasajeros</th>
+                <th>Acciones</th>
+            </thead>
+            <tbody>
+                {% for trip in trips %}
+                <tr>
+                    <td>{{ trip.journey.origin }}</td>
+                    <td>{{ trip.journey.destination }}</td>
+                    <td>{{ trip.journey.schedule }} Hrs.</td>
+                    <td>{{ trip.journey.date }}</td>
+                    <td>{{ trip.bus }}</td>
+                    <td>{{ prom }}</td>
+                    <td>
+                        <a href="{% url 'sales:buyTicket' trip.id %}" class="btn btn-success btn-sm">Comprar Pasaje</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock  %}
+{% block jsFiles %}
+    <script>
+        var table;
+        $(document).ready(function () {
+            table = $("#table").DataTable({
+                "responsive": true,
+                "order": [0, 'asc'],
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "columnDefs": [
+                        { targets: 'no-sort', orderable: false }
+                    ],
+                "language": {
+                    "sProcessing":     "Procesando...",
+                    "sLengthMenu":     "Mostrar _MENU_ registros",
+                    "sZeroRecords":    "No se encontraron resultados",
+                    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix":    "",
+                    "sSearch":         "Buscar:",
+                    "sUrl":            "",
+                    "sInfoThousands":  ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst":    "Primero",
+                        "sLast":     "Último",
+                        "sNext":     "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                },
+            });
+        });
+    </script>
+{% endblock %}

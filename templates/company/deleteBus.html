@@ -1,0 +1,14 @@
+{% extends "base/base.html" %}
+{% block content %}
+    <div class="container" >
+        <form method="post">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Eliminar bus</legend>
+                <h1>¿Desea eliminar el bus con matrícula: {{ bus.license }}?</h1>
+                <button type="submit" class="btn btn-danger btn-sm">Sí, eliminar</button>
+                <a class="btn btn-default btn-sm" href="{% url 'company:indexBus' %}">Cancelar</a>
+            </fieldset>
+        </form>
+    </div>
+{% endblock  %}

@@ -1,0 +1,26 @@
+{% extends "base/base.html" %}
+{% block content %}
+    <div class="container" >
+        <form method="post">
+            {% csrf_token %}
+            <fieldset>
+                <legend>Comprar Ticket</legend>
+                <h3>¿Desea comprar un ticket para el destino {{ trip.journey.origin }}-{{ trip.journey.destination }}?</h3>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        {{ form.numSeat }}
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form.trip }}
+                    </div>
+                    <div class="col-sm-10">
+                        {{ form.passenger }}
+                    </div>
+                </div>
+                {{ form.errors }}
+                <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                <a class="btn btn-default btn-sm" href="{% url 'sales:viewJourneys' %}">Cancelar</a>
+            </fieldset>
+        </form>
+    </div>
+{% endblock  %}

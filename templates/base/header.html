@@ -1,0 +1,43 @@
+<header>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<a class="navbar-brand" href="#">Bus Company</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
+				aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarColor01">
+			<ul class="navbar-nav mr-auto">
+				{% if user.is_superuser == True %}
+				<li class="nav-item active">
+					<a class="nav-link" href="{% url 'sales:indexJourney' %}">Planifica</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'company:indexDriver' %}">Choferes</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'company:indexBus' %}">Buses</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'sales:indexTicket' %}">Ventas</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'sales:averageJourney' %}">Venta por Trayecto</a>
+				</li>
+				{% else %}
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'sales:viewJourneys' %}">Comprar un Pasaje!</a>
+				</li>
+				{% endif %}
+			</ul>
+			<ul class="navbar-nav navbar-right">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Bienvenido, {{ user.username }}!</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'logout' %}">Salir</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</header>
