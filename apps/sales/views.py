@@ -51,42 +51,17 @@ def indexJourney(request):
 
 def averageJourney(request):
 
-    #journeys = Trip.objects.filter(journey__state='1').values('journey').annotate(promedio=Sum('ticket'))
-
-    """Ticket.objects.filter(trip__journey__origin='origen',
-                          trip__journey__destination='destino'). \
-        values('trip', 'trip__bus__license').annotate(
-        pasajes=Count('trip'),
-        chofer=F('trip__bus__driver__name')).annotate(percent=F('pasajes') * 10).filter(percent__gte='porcent')
-        """
-
-
     journeys = Ticket.objects.filter(trip__journey__state='1').values('trip', 'trip__journey').annotate(pasajes=Count('trip'))
 
-    journeys = journeys.values('trip__journey', 'pasajes').annotate(Count('trip'))
-
-    #journeys = Ticket.objects.filter(trip__journey__state='1').values('trip__journey', 'trip__journey__origin', 'trip__journey__destination').annotate(pasajes=Count('trip'))
-
-    #journeys = Ticket.objects.filter(trip__journey__state='1').values('trip', 'trip__journey').annotate(ps=Count('trip__journey'), pj=Sum('ps'))
-
-    #journeys = journeys.values('jo')
-
-    journeys = Ticket.objects.values('trip').annotate(a=Count('numSeat'))
-
-    journeys = journeys.values('')
-
-
-
-    print(journeys)
+    journeys = journeys.values('trip__journey', 'pasajes').annotate(Count('trip'), origen=F('trip__journey__origin'), destino=F('trip__journey__destination'))
 
     return render(request, "sales/averageJourney.html", {'journeys': journeys})
 
 
 def viewJourneys(request):
     trips = Trip.objects.filter(journey__state='1')
-    promedio = 0
 
-    return render(request, "sales/viewJourneys.html", {'trips': trips, 'prom': promedio})
+    return render(request, "sales/viewJourneys.html", {'trips': trips})
 
 
 def viewMyRedirect(request):

@@ -9,7 +9,6 @@
                 <th>Horario</th>
                 <th>Fecha</th>
                 <th>Bus Asignado</th>
-                <th>Promedio Pasajeros</th>
                 <th>Acciones</th>
             </thead>
             <tbody>
@@ -20,7 +19,6 @@
                     <td>{{ trip.journey.schedule }} Hrs.</td>
                     <td>{{ trip.journey.date }}</td>
                     <td>{{ trip.bus }}</td>
-                    <td>{{ prom }}</td>
                     <td>
                         <a href="{% url 'sales:buyTicket' trip.id %}" class="btn btn-success btn-sm">Comprar Pasaje</a>
                     </td>

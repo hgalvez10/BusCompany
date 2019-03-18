@@ -6,13 +6,13 @@
             <thead>
                 <th>Origen</th>
                 <th>Destino</th>
-                <th>Promedio Pasajeros</th>
+                <th>Total de pasajes vendidos</th>
             </thead>
             <tbody>
                 {% for journey in journeys %}
                 <tr>
-                    <td>{{ journey.trip__journey__origin }}</td>
-                    <td>{{ journey.trip__journey__destination }}</td>
+                    <td>{{ journey.origen }}</td>
+                    <td>{{ journey.destino }}</td>
                     <td>{{ journey.pasajes }}</td>
                 </tr>
                 {% endfor %}
