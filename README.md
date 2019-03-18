@@ -10,6 +10,7 @@ Repositorio para almacenar proyecto de postulación.
     * pytz==2018.9.
     
 _Se recomienda utilizar **pip install**._
+** El motor de base de datos que se utiliza es PostgreSQL. **
 
 ## Configuración de la base de datos
 
