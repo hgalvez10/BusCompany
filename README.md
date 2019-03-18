@@ -1,7 +1,7 @@
 # BusCompany
 Repositorio para almacenar proyecto de postulación.
 
-##Pasos de Instalación Inicial
+## Pasos de Instalación Inicial
 1. Configurar un ambiente virtual
 2. Descargar el código fuente del proyecto.
 3. Descargar e instalar las siguientes dependencias:
